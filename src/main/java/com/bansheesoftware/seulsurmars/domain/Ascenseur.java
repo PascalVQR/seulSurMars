@@ -9,4 +9,13 @@ public class Ascenseur extends Decor {
         this.hauteurBas = hauteurBas;
         this.hauteurHaut = hauteurHaut;
     }
+
+	public int move() {
+		if (y == hauteurBas) {
+			y = hauteurHaut;
+		} else {
+			y = hauteurBas;
+		}
+		return y;
+	}
 }

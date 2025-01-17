@@ -19,7 +19,7 @@ public class Objet {
         this.graphisme = graphisme;
     }
 
-    public Objet clone() {
+	public Objet clone() {
         Objet objet = new Objet(id, x, y, graphisme);
         objet.animation = this.animation;
         return objet;

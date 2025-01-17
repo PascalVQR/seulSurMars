@@ -1,9 +1,11 @@
 package com.bansheesoftware.seulsurmars;
 
 import com.bansheesoftware.seulsurmars.domain.Monde;
-import com.bansheesoftware.seulsurmars.service.creermonde.CreerMondeService;
-import com.bansheesoftware.seulsurmars.service.game.GameService;
-import com.bansheesoftware.seulsurmars.service.timer.TimerService;
+import com.bansheesoftware.seulsurmars.services.CreerMondeService;
+import com.bansheesoftware.seulsurmars.services.InputService;
+import com.bansheesoftware.seulsurmars.services.TimerService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -12,17 +14,20 @@ import java.util.concurrent.ConcurrentHashMap;
 @RestController
 @RequestMapping("game")
 public class GameController {
-
-    private final GameService gameService;
-    private final TimerService timerService;
-    private final CreerMondeService creerMondeService;
-
     Map<Integer, Monde> mondes = new ConcurrentHashMap<>();
 
-    public GameController(GameService gameService, TimerService timerService, CreerMondeService creerMondeService) {
-        this.gameService = gameService;
-        this.timerService = timerService;
-        this.creerMondeService = creerMondeService;
+    @Autowired
+    private CreerMondeService creerMondeService;
+    @Autowired
+    private InputService inputService;
+    @Autowired
+    private TimerService timerService;
+    
+    public GameController() {
+    }
+    
+    public enum Touche {
+        LEFT, RIGHT, DECOR, OBJET,
     }
 
     @PostMapping(value = "touche")
@@ -30,30 +35,10 @@ public class GameController {
         String key = body.get("touche");
         int id = Integer.valueOf(body.get("id"));
         Monde monde = mondes.get(id);
-        if (key == null) {
-            return monde;
-        }
-        GameService.Touche touche;
-        switch (key) {
-            case "ArrowLeft":
-                touche = GameService.Touche.LEFT;
-                break;
-            case "ArrowRight":
-                touche = GameService.Touche.RIGHT;
-                break;
-            case "Space":
-                touche = GameService.Touche.DECOR;
-                break;
-            case "Enter":
-                touche = GameService.Touche.OBJET;
-                break;
-            default:
-                return monde;
-        }
-
-        // TODO
-
-        return (monde);
+//        System.out.println(monde);
+//        InputService inputService = new InputService();
+        this.inputService.handleInput(monde, key);
+        return monde;
     }
 
     @PostMapping(value = "timer")
@@ -64,15 +49,17 @@ public class GameController {
         if (timer == null) {
             return monde;
         }
-
-        // TODO
-
+//        System.out.println(timer);
+//        System.out.println(body);
+//        TimerService timerService = new TimerService();
+        this.timerService.handleTime(monde, timer);
         return monde;
     }
 
     @GetMapping
     public Monde init() {
-        Monde monde =  // TODO;
+        Monde monde = creerMondeService.creerMondeTest();
+//        monde.timerNourriture = 10;
         mondes.put(monde.getId(), monde);
         return monde;
     }
