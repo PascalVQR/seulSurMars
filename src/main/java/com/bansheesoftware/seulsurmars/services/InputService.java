@@ -27,17 +27,11 @@ public class InputService {
         switch (key) {
 	        // Aller à gauche
 	        case "ArrowLeft":
-//	        	if (MondeService.positionIsWalkable(monde, posX-1, posY)) {
-//	        		monde.positionX--;
-//	        	}
 	        	MondeService.moveHero(monde, posX-1, posY);
 	        	break;
 	        	
 	        // Aller à droite
 	        case "ArrowRight":
-//	        	if (MondeService.positionIsWalkable(monde, posX+1, posY)) {
-//	        		monde.positionX++;
-//	    		}
 	        	MondeService.moveHero(monde, posX+1, posY);
 	        	break;
 	        	
@@ -51,25 +45,5 @@ public class InputService {
 	        	ObjetService.handleItem(monde);
 	        	break;
         }
-        
-//        return monde;
-        
-//        GameService.Touche touche;
-//        switch (key) {
-//            case "ArrowLeft":
-//                touche = GameService.Touche.LEFT;
-//                break;
-//            case "ArrowRight":
-//                touche = GameService.Touche.RIGHT;
-//                break;
-//            case "Space":
-//                touche = GameService.Touche.DECOR;
-//                break;
-//            case "Enter":
-//                touche = GameService.Touche.OBJET;
-//                break;
-//            default:
-//                return monde;
-//        }
 	}
 }

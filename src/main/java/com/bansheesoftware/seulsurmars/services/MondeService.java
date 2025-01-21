@@ -1,9 +1,18 @@
 package com.bansheesoftware.seulsurmars.services;
 
+import java.time.Instant;
+
 import com.bansheesoftware.seulsurmars.domain.*;
 
 @org.springframework.stereotype.Service
 public class MondeService {
+	
+	static public String generateId() {
+		// Génère un nombre entier positif à partir du temps
+		int n = Math.abs(Instant.now().hashCode());
+		String s = Integer.toString(n);
+		return "objet-"+s;
+	}
 
 	static public boolean positionIsWalkable(Monde monde, int x, int y) {
 		if (positionIsSol(monde, x, y) || getAscenseurIndex(monde, x, y) > -1 ) {
@@ -11,6 +20,12 @@ public class MondeService {
 		}
 		return false;
 	}
+	
+	static public boolean positionIsSol(Monde monde) {
+		boolean isSol = positionIsSol(monde, monde.positionX, monde.positionY);
+		return isSol;
+	}
+	
 	
 	static public boolean positionIsSol(Monde monde, int x, int y) {
 		if (x >= 0 && x < monde.getLargeur()) {
@@ -66,6 +81,17 @@ public class MondeService {
         	monde.timerOxygene = 30;
     	}
     }
+	
+	static public int getItemIndexById(Monde monde, String itemId) {
+		int index = -1;
+		for(int i = 0; i < monde.objets.size(); i++) {
+			Objet item = monde.objets.get(i);
+			if (item.id.equals(itemId)) {
+				return i;
+			}
+		}
+		return index;
+	}
 	
 	static private boolean numberInRange(int num, int min, int max) {
 		return num >= min && num <= max;

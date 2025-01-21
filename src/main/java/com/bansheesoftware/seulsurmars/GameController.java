@@ -35,8 +35,6 @@ public class GameController {
         String key = body.get("touche");
         int id = Integer.valueOf(body.get("id"));
         Monde monde = mondes.get(id);
-//        System.out.println(monde);
-//        InputService inputService = new InputService();
         this.inputService.handleInput(monde, key);
         return monde;
     }
@@ -49,9 +47,6 @@ public class GameController {
         if (timer == null) {
             return monde;
         }
-//        System.out.println(timer);
-//        System.out.println(body);
-//        TimerService timerService = new TimerService();
         this.timerService.handleTime(monde, timer);
         return monde;
     }
@@ -59,8 +54,9 @@ public class GameController {
     @GetMapping
     public Monde init() {
         Monde monde = creerMondeService.creerMondeTest();
-//        monde.timerNourriture = 10;
         mondes.put(monde.getId(), monde);
+        monde.timerNourriture = 600;
+        monde.timerOxygene = 600;
         return monde;
     }
 }

@@ -115,6 +115,7 @@ public class CreerMondeService {
         monde.decors.add(new Decor("decor-11", 7, 5, Decor.GRAPHISME.recycleurAir));
         monde.decors.add(new Decor("decor-12", 4, 5, Decor.GRAPHISME.potager));
         monde.decors.add(new Decor("decor-13", 10, 5, Decor.GRAPHISME.four));
+        monde.decors.add(new Decor("decor-100", 6, 2, Decor.GRAPHISME.ampouleAllumee));
         return monde;
     }
 }
