@@ -55,8 +55,6 @@ public class GameController {
     public Monde init() {
         Monde monde = creerMondeService.creerMondeTest();
         mondes.put(monde.getId(), monde);
-        monde.timerNourriture = 600;
-        monde.timerOxygene = 600;
         return monde;
     }
 }

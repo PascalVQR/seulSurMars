@@ -19,13 +19,13 @@ public class ObjetService {
     static public void handleItem(Monde monde) {
     	int id = getItemIndex(monde);
     	
-    	if ((id >= 0 || id < monde.objets.size()) && monde.inventaire==null) {
+    	if ((id >= 0 && id < monde.objets.size()) && monde.inventaire==null) {
     		pickUpItem(monde, id);
-    		
+    	
     	} else if (id == -1 && monde.inventaire!=null && MondeService.positionIsSol(monde)) {
     		dropItem(monde);
     		
-    	} else if ((id >= 0 || id < monde.objets.size()) && monde.inventaire!=null) {
+    	} else if ((id >= 0 && id < monde.objets.size()) && monde.inventaire!=null) {
     		combineItem(monde);
     	}
     }

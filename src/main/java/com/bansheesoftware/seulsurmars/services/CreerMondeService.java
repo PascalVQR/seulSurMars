@@ -109,7 +109,7 @@ public class CreerMondeService {
         creerSalle(monde, 2, 4, 5, 3,  true, true);
         creerSalle(monde, 4, 1, 5, 3, false, false);
         creerAscenseur(monde, "decors1", 5, 5, 2, 5);
-        monde.objets.add(new Objet("objet-2", 8, 5, Objet.GRAPHISME.bouteille));;
+        monde.objets.add(new Objet("objet-2", 8, 5, Objet.GRAPHISME.bouteille));
         monde.objets.add(new Objet("objet-3", 9, 5, Objet.GRAPHISME.sucre));
         monde.decors.add(new Decor("decor-10", 3, 5, Decor.GRAPHISME.hydrazine));
         monde.decors.add(new Decor("decor-11", 7, 5, Decor.GRAPHISME.recycleurAir));
@@ -117,5 +117,28 @@ public class CreerMondeService {
         monde.decors.add(new Decor("decor-13", 10, 5, Decor.GRAPHISME.four));
         monde.decors.add(new Decor("decor-100", 6, 2, Decor.GRAPHISME.ampouleAllumee));
         return monde;
+    }
+    
+    public Monde creerMonde4() {
+    	Monde monde = new Monde(10, 5, 2, 2, 2);
+    	creerSalle(monde, 1, 1, 8, 3, true, true);
+        creerAscenseur(monde, "decor-0", 0, 2, 2, 3);
+    	// Objets
+    	monde.objets.add(new Objet("objet-1", 2, 2, Objet.GRAPHISME.bouteille));
+    	monde.objets.add(new Objet("objet-2", 5, 2, Objet.GRAPHISME.sucre));
+    	// Decors
+        monde.decors.add(new Decor("decor-1", 6, 2, Decor.GRAPHISME.hydrazine));
+        monde.decors.add(new Decor("decor-2", 7, 2, Decor.GRAPHISME.recycleurAir));
+        monde.decors.add(new Decor("decor-3", 3, 2, Decor.GRAPHISME.potager));
+        monde.decors.add(new Decor("decor-4", 4, 2, Decor.GRAPHISME.four));
+        monde.decors.add(new Decor("decor-6", 8, 2, Decor.GRAPHISME.ampouleAllumee));
+    	return monde;
+    }
+    
+    public Monde creerMonde5() {
+    	Monde monde = new Monde(7, 5, 2, 2, 2);
+    	creerSalle(monde, 1, 1, 5, 3, true, true);
+        creerAscenseur(monde, "decor-0", 0, 2, 2, 3);
+    	return monde;
     }
 }
